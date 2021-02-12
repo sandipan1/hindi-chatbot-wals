@@ -1,0 +1,53 @@
+ 
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - greet
+  - goodbye
+  - thanks
+  - affirm
+  - deny
+  - lang_search
+entities:
+  - language
+# slots:
+#   email:
+#     type: unfeaturized
+#     influence_conversation: false
+responses:
+  utter_greet:
+  - text: |
+      हेलो कैसे हो आप ?
+  - text: |
+      नमस्ते !
+  - text: |
+      मैं आपके लिया क्या कर सकता हु ? 
+  utter_goodbye:
+  - text: |
+      अलविदा 
+  - text: |
+      आप से बात करके अच्छा लगा 
+  - text: |
+      फिर मिलते है 
+  utter_thanks:
+  - text: |
+      अच्छा लगा सुनकर मै आपकी मदद कर पाया  
+  - text: |
+      सुक्रिया 
+
+  #utter_feedback_positive:
+  #- text: |
+      #I am happy that I could help you ! 
+  #utter_feedback_negetive:
+  #- text: |
+      #Sorry I will try to do better next time :(
+actions:
+- '...'
+- utter_greet
+- utter_goodbye
+- action_lang_search
+- utter_thanks
+#- utter_feedback_positive
+#- utter_feedback_negetive
