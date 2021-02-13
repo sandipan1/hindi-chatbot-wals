@@ -3,52 +3,46 @@ session_config:
   session_expiration_time: 120
   carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - goodbye
-  - thanks
-  - affirm
-  - deny
-  - lang_search
+    - greet
+    - goodbye
+    - thanks
+    - affirm
+    - deny
+    - lang_search
 
 entities:
-  - language
+    - language
 
 responses:
-  utter_greet:
-  - text: |
-      हेलो कैसे हो आप ?
-  - text: |
-      नमस्ते !
-  - text: |
-      मैं आपके लिया क्या कर सकता हु ? 
+    utter_greet:
+    - text: |
+        हेलो कैसे हो आप ?
+    - text: |
+        नमस्ते !
+    - text: |
+        मैं आपके लिया क्या कर सकता हु ? 
 
-  utter_goodbye:
-  - text: |
-      अलविदा 
-  - text: |
-      आप से बात करके अच्छा लगा 
-  - text: |
-      फिर मिलते है 
-  
-  utter_thanks:
-  - text: |
-      अच्छा लगा सुनकर मै आपकी मदद कर पाया  
-  - text: |
-      सुक्रिया 
+    utter_goodbye:
+    - text: |
+        अलविदा 
+    - text: |
+        आप से बात करके अच्छा लगा 
+    - text: |
+        फिर मिलते है 
 
-  utter_feedback_positive:
-  - text: |
-      सहायता करके मुझे खुशी हुई :) 
-  
-  utter_feedback_negetive:
-  - text: |
-      क्षमा करें, मैं अगली बार बेहतर करने की कोशिश करूंगा :(
+    utter_thanks:
+    - text: |
+        अच्छा लगा सुनकर मै आपकी मदद कर पाया  
+    - text: |
+        सुक्रिया 
+
+    utter_feedback_positive:
+    - text: |
+        सहायता करके मुझे खुशी हुई :) 
+
+    utter_feedback_negetive:
+    - text: |
+        क्षमा करें, मैं अगली बार बेहतर करने की कोशिश करूंगा :(
 
 actions:
-- '...'
-- utter_greet
-- utter_goodbye
-- action_lang_search
-- utter_thanks
-- utter_feedback_positive
-- utter_feedback_negetive
+    - action_lang_search
