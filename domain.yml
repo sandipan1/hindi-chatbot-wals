@@ -1,6 +1,6 @@
 version: '2.0'
 session_config:
-  session_expiration_time: 120
+  session_expiration_time: 10000
   carry_over_slots_to_new_session: true
 intents:
     - greet
@@ -64,3 +64,9 @@ responses:
 
 actions:
     - action_lang_search
+    - ask_feedback
+    - utter_feedback_positive
+    - utter_feedback_negetive
+    - utter_thanks
+    - utter_greet
+    - utter_goodbye

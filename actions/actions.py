@@ -27,8 +27,12 @@ class ActionLanguageSearch(Action):
         if len(entities) > 0:
             query_lang = entities.pop()
             query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
-            query_lang_en = query_lang_en.rstrip()
-            query_lang_en = query_lang_en.lower().capitalize()
+            query_lang_en = query_lang_en.strip()
+            query_lang_en = query_lang_en.lower()
+            if len(query_lang_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
+
+                query_lang_en = list(set(f).intersection(set(wals_data["Name"])))[0]
             print(query_lang_en)
             
             out_row = wals_data[wals_data["Name"] == query_lang_en].to_dict("records")
@@ -41,6 +45,6 @@ class ActionLanguageSearch(Action):
                 dispatcher.utter_message(text = out_text)
             else:
                 # dispatcher.utter_message(text="Sorry, we do not have records for the language %s"%query_lang_en)
-                dispatcher.utter_message(text = "क्षमा करें, हमारे पास %s भाषा के रिकॉर्ड नहीं हैं"%query_lang)
+                dispatcher.utter_message(text = "क्षमा करें, हमारे पास %s भाषा के रिकॉर्ड नहीं हैं"%query_lang_en)
 
         return []
