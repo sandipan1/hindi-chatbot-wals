@@ -14,6 +14,7 @@ rules:
     steps:
     - intent: lang_search
     - action: action_lang_search
+    - action: ask_feedback
 
   - rule: respond positively when the user says thank you
     steps:

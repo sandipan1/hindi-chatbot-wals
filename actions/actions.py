@@ -26,19 +26,19 @@ class ActionLanguageSearch(Action):
 
         if len(entities) > 0:
             query_lang = entities.pop()
-            query_lang = translator.translate(text=query_lang, lang_tgt='en')
-            query_lang = query_lang.rstrip()
-            query_lang = query_lang.lower().capitalize()
-            print(type(query_lang))
-            print(query_lang)
+            query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
+            query_lang_en = query_lang.strip()
+            query_lang_en = query_lang_en.lower().capitalize()
+            print(query_lang_en)
             
-            out_row = wals_data[wals_data["Name"] == query_lang].to_dict("records")
+            out_row = wals_data[wals_data["Name"] == query_lang_en].to_dict("records")
             print(len(out_row))
             if len(out_row) > 0:
                 out_row = out_row[0]
                 out_text = "Language %s belongs to the Family %s\n with Genus as %s\n and has ISO code %s" % (out_row["Name"], out_row["Family"], out_row["Genus"], out_row["ISO_codes"])
+                out_text = translator.translate(text=out_text, lang_tgt='hi')
                 dispatcher.utter_message(text = out_text)
             else:
-                dispatcher.utter_message(text = "Sorry! We don't have records for the language %s" % query_lang)
+                dispatcher.utter_message(text = "क्षमा करें, हमारे पास %s भाषा के रिकॉर्ड नहीं हैं"%query_lang)
 
         return []
