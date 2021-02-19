@@ -1,4 +1,4 @@
-language: hi
+language: "hi"
 
 pipeline:
   - name: SpacyNLP
@@ -16,3 +16,7 @@ pipeline:
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 100
+
+policies:
+  - name: MemoizationPolicy
+  - name: RulePolicy
