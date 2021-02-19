@@ -1,6 +1,6 @@
 version: '2.0'
 session_config:
-  session_expiration_time: 10000
+  session_expiration_time: 120
   carry_over_slots_to_new_session: true
 intents:
     - greet
@@ -9,9 +9,11 @@ intents:
     - affirm
     - deny
     - lang_search
+    - lang_search_from_country
 
 entities:
     - language
+    - country
 
 responses:
     utter_greet:
