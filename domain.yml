@@ -44,10 +44,11 @@ responses:
   #- text: |
       #Sorry I will try to do better next time :(
 actions:
-- '...'
-- utter_greet
-- utter_goodbye
-- action_lang_search
-- utter_thanks
-#- utter_feedback_positive
-#- utter_feedback_negetive
+    - action_lang_search
+    - action_lang_search_from_country
+    - ask_feedback
+    - utter_feedback_positive
+    - utter_feedback_negetive
+    - utter_thanks
+    - utter_greet
+    - utter_goodbye
