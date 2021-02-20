@@ -15,7 +15,7 @@ rules:
     - intent: lang_search
     - action: action_lang_search
     - action: ask_feedback
-  
+    
   - rule: search all (or few) languages spoken in a country
     steps:
     - intent: lang_search_from_country

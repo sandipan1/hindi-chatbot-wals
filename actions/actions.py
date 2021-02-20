@@ -29,7 +29,10 @@ class ActionLanguageSearch(Action):
             query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
             query_lang_en = query_lang_en.strip()
             query_lang_en = query_lang_en.lower()
+            if len(query_lang_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
 
+                query_lang_en = list(set(f).intersection(set(wals_data["Name"])))[0]
             print(query_lang_en)
             
             out_row = wals_data[wals_data["Name"] == query_lang_en].to_dict("records")

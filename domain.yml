@@ -1,48 +1,67 @@
- 
 version: '2.0'
 session_config:
-  session_expiration_time: 60
+  session_expiration_time: 10000
   carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - goodbye
-  - thanks
-  - affirm
-  - deny
-  - lang_search
-entities:
-  - language
-# slots:
-#   email:
-#     type: unfeaturized
-#     influence_conversation: false
-responses:
-  utter_greet:
-  - text: |
-      हेलो कैसे हो आप ?
-  - text: |
-      नमस्ते !
-  - text: |
-      मैं आपके लिया क्या कर सकता हु ? 
-  utter_goodbye:
-  - text: |
-      अलविदा 
-  - text: |
-      आप से बात करके अच्छा लगा 
-  - text: |
-      फिर मिलते है 
-  utter_thanks:
-  - text: |
-      अच्छा लगा सुनकर मै आपकी मदद कर पाया  
-  - text: |
-      सुक्रिया 
+    - greet
+    - goodbye
+    - thanks
+    - affirm
+    - deny
+    - lang_search
 
-  #utter_feedback_positive:
-  #- text: |
-      #I am happy that I could help you ! 
-  #utter_feedback_negetive:
-  #- text: |
-      #Sorry I will try to do better next time :(
+entities:
+    - language
+
+responses:
+    utter_greet:
+    - text: |
+        हेलो कैसे हो आप ?
+    - text: |
+        नमस्ते !
+    - text: |
+        मैं आपके लिया क्या कर सकता हु ? 
+    - text: |
+        हैलो, मैं कैसे आपकी मदद कर सकता हूं
+
+    utter_goodbye:
+    - text: |
+        अलविदा 
+    - text: |
+        आप से बात करके अच्छा लगा 
+    - text: |
+        फिर मिलते है 
+
+    utter_thanks:
+    - text: |
+        अच्छा लगा सुनकर मै आपकी मदद कर पाया  
+    - text: |
+        जी शुक्रिया
+    - text: |
+        धन्यवाद
+    - text: |
+        मैं आपकी मदद करके खुश हूं
+
+    ask_feedback:
+    - text: |
+        क्या इससे आपको मदद मिली
+    - text: |
+        क्या यह मददगार था
+    - text: |
+        क्या मैंने आपके सवाल का जवाब दिया
+    - text: |
+        मुझे आशा है कि मैंने आपको वह जानकारी दी जिसकी आपको तलाश थी
+    - text: |
+        क्या आप इसी की तलाश में हैं
+
+    utter_feedback_positive:
+    - text: |
+        सहायता करके मुझे खुशी हुई :) 
+
+    utter_feedback_negetive:
+    - text: |
+        क्षमा करें, मैं अगली बार बेहतर करने की कोशिश करूंगा :(
+
 actions:
     - action_lang_search
     - action_lang_search_from_country
