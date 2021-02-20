@@ -9,9 +9,13 @@ intents:
     - affirm
     - deny
     - lang_search
+    - lang_search_from_country
+    - country_search_from_language
+    - gender_search
 
 entities:
     - language
+    - country
 
 responses:
     utter_greet:
@@ -65,6 +69,8 @@ responses:
 actions:
     - action_lang_search
     - action_lang_search_from_country
+    - action_country_search_from_language
+    - action_gender_search
     - ask_feedback
     - utter_feedback_positive
     - utter_feedback_negetive
