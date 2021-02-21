@@ -33,7 +33,17 @@ rules:
     - intent: gender_search
     - action: action_gender_search
     - action: ask_feedback
+  - rule: search for ancestor of a lang
+    steps:
+    - intent: ancestor_search
+    - action: action_ancestor_search
+    - action: ask_feedback
 
+  - rule: search for cousins of a lang
+    steps:
+    - intent: cousin_search
+    - action: action_cousin_search
+    - action: ask_feedback
   - rule: respond positively when the user says thank you
     steps:
     - intent: thanks

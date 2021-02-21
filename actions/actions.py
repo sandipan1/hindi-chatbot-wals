@@ -196,7 +196,7 @@ class ActionGenderSearch(Action):
 
 class ActionAncestorTree():
     def name(self) -> Text:
-        return "action_ancester_tree"
+        return "action_ancestor_search"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -237,7 +237,7 @@ class ActionAncestorTree():
 
 class ActionLanguageCousins():
     def name(self) -> Text:
-        return "action_langauge_cousin"
+        return "action_cousin_search"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,

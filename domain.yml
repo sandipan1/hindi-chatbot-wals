@@ -1,6 +1,6 @@
 version: '2.0'
 session_config:
-  session_expiration_time: 10000
+  session_expiration_time: 150
   carry_over_slots_to_new_session: true
 intents:
     - greet
@@ -12,7 +12,8 @@ intents:
     - lang_search_from_country
     - country_search_from_language
     - gender_search
-
+    - cousin_search
+    - ancestor_search
 entities:
     - language
     - country
@@ -68,6 +69,8 @@ responses:
 
 actions:
     - action_lang_search
+    - action_cousin_search
+    - action_ancestor_search
     - action_lang_search_from_country
     - action_country_search_from_language
     - action_gender_search
