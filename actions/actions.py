@@ -29,7 +29,7 @@ class ActionLanguageSearch(Action):
             query_lang = entities.pop()
             query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
             query_lang_en = query_lang_en.strip()
-            query_lang_en = query_lang_en.lower()
+            query_lang_en = query_lang_en.lower().capitalize()
             if len(query_lang_en.split(' ')) > 1:
                 f = [x.capitalize() for x in query_lang_en.split(' ')]
 
@@ -70,7 +70,9 @@ class ActionLanguageSearchFromCountry(Action):
             query_country = entities.pop()
             query_country_en = translator.translate(text=query_country, lang_tgt='en')
             query_country_en = query_country_en.strip()
-            query_country_en = query_country_en.lower()
+            query_country_en = query_country_en.lower().capitalize()
+            if len(query_country_en.split(' ')) > 1:
+                query_country_en = ' '.join([x.capitalize() for x in query_country_en.split()])
 
             self.print(query_country_en)
             
@@ -86,7 +88,7 @@ class ActionLanguageSearchFromCountry(Action):
                     languages = list(language[language['pk'].isin(lpks)]['name'])
                     if len(languages) > 10:
                         languages = random.sample(languages, 10)
-                    out_text = "%s में बोली जाने वाली भाषाएँ इस प्रकार हैं - "%query_country + ",".join(languages)
+                    out_text = "%s में बोली जाने वाली भाषाएँ इस प्रकार हैं - "%query_country + translator.translate(text=", ".join(languages), lang_tgt='hi')
         else:
             out_text = 'क्षमा करें, मुझे समझ नहीं आया'
 
@@ -114,7 +116,10 @@ class ActionCountrySearchFromLanguage(Action):
             query_language = entities.pop()
             query_language_en = translator.translate(text=query_language, lang_tgt='en')
             query_language_en = query_language_en.strip()
-            query_language_en = query_language_en.lower()
+            query_language_en = query_language_en.lower().capitalize()
+            if len(query_language_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
+                query_lang_en = list(set(f).intersection(set(language["name"])))[0]
 
             self.print(query_language_en)
             
@@ -130,7 +135,7 @@ class ActionCountrySearchFromLanguage(Action):
                     countries = list(country[country['pk'].isin(cpks)]['name'])
                     if len(countries) > 10:
                         countries = random.sample(countries, 10)
-                    out_text = "%s भाषा बोलने वाले देश इस प्रकार हैं - "%query_language + ",".join(countries)
+                    out_text = "%s भाषा बोलने वाले देश इस प्रकार हैं - "%query_language + translator.translate(text=", ".join(countries), lang_tgt='hi')
         else:
             out_text = 'क्षमा करें, मुझे समझ नहीं आया'
 
@@ -157,7 +162,10 @@ class ActionGenderSearch(Action):
             query_language = entities.pop()
             query_language_en = translator.translate(text=query_language, lang_tgt='en')
             query_language_en = query_language_en.strip()
-            query_language_en = query_language_en.lower()
+            query_language_en = query_language_en.lower().capitalize()
+            if len(query_language_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
+                query_lang_en = list(set(f).intersection(set(languages["Name"])))[0]
 
             self.print(query_language_en)
             
@@ -167,6 +175,7 @@ class ActionGenderSearch(Action):
             else:
                 language_code = language_code[0]
                 gender_value = values[values['ID'] == '30A-' + language_code]['Value']
+                gender_value = gender_value.iloc[0]
                 if gender_value == 1:
                     out_text = '%s भाषा लिंग अज्ञेयवादी है'%query_language
                 elif gender_value == 2:
