@@ -132,13 +132,14 @@ nlu:
     - क्या [मैंडरिन](language) भाषा लिंग तटस्थ है?
 
 - intent: ancestor_search
-examples: | 
+  examples: | 
     - [हिंदी](language) भाषा का वंशज मुझे बताओ
     - आप [फ्रेंच](language) भाषा के पूर्वजों के बारे में क्या जानते हैं?
     - [जर्मन](language) भाषा का वंश वृक्ष
     - [अंग्रेजी](language) भाषा कैसे बन गई
     - [स्पेनिश](language) भाषा का मूल क्या है
     - [अरबी](language) किन भाषाओं से उत्पन्न हुई?
+
 - intent: cousin_search
   examples: |
     - मुझे [हिंदी](language) भाषा का वंशावली दिखाओ

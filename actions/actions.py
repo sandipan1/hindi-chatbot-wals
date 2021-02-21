@@ -193,8 +193,7 @@ class ActionGenderSearch(Action):
         dispatcher.utter_message(text=out_text)
         return []
 
-
-class ActionAncestorTree():
+class ActionAncestorSearch(Action):
     def name(self) -> Text:
         return "action_ancestor_search"
 
@@ -233,9 +232,7 @@ class ActionAncestorTree():
         else: 
             dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
 
-
-
-class ActionLanguageCousins():
+class ActionCousinSearch(Action):
     def name(self) -> Text:
         return "action_cousin_search"
 

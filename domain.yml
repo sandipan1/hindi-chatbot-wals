@@ -47,17 +47,17 @@ responses:
     - text: |
         मैं आपकी मदद करके खुश हूं
 
-    ask_feedback:
-    - text: |
-        क्या इससे आपको मदद मिली
-    - text: |
-        क्या यह मददगार था
-    - text: |
-        क्या मैंने आपके सवाल का जवाब दिया
-    - text: |
-        मुझे आशा है कि मैंने आपको वह जानकारी दी जिसकी आपको तलाश थी
-    - text: |
-        क्या आप इसी की तलाश में हैं
+    # ask_feedback:
+    # - text: |
+    #     क्या इससे आपको मदद मिली
+    # - text: |
+    #     क्या यह मददगार था
+    # - text: |
+    #     क्या मैंने आपके सवाल का जवाब दिया
+    # - text: |
+    #     मुझे आशा है कि मैंने आपको वह जानकारी दी जिसकी आपको तलाश थी
+    # - text: |
+    #     क्या आप इसी की तलाश में हैं
 
     utter_feedback_positive:
     - text: |
@@ -74,7 +74,7 @@ actions:
     - action_lang_search_from_country
     - action_country_search_from_language
     - action_gender_search
-    - ask_feedback
+    # - ask_feedback
     - utter_feedback_positive
     - utter_feedback_negetive
     - utter_thanks

@@ -14,36 +14,38 @@ rules:
     steps:
     - intent: lang_search
     - action: action_lang_search
-    - action: ask_feedback
+    # - action: ask_feedback
     
   - rule: search all (or few) languages spoken in a country
     steps:
     - intent: lang_search_from_country
     - action: action_lang_search_from_country
-    - action: ask_feedback
+    # - action: ask_feedback
 
   - rule: search all (or few) countires where a language is spoken
     steps:
     - intent: country_search_from_language
     - action: action_country_search_from_language
-    - action: ask_feedback
+    # - action: ask_feedback
 
   - rule: search for the number of genders in a language
     steps:
     - intent: gender_search
     - action: action_gender_search
-    - action: ask_feedback
+    # - action: ask_feedback
+
   - rule: search for ancestor of a lang
     steps:
     - intent: ancestor_search
     - action: action_ancestor_search
-    - action: ask_feedback
+    # - action: ask_feedback
 
   - rule: search for cousins of a lang
     steps:
     - intent: cousin_search
     - action: action_cousin_search
-    - action: ask_feedback
+    # - action: ask_feedback
+    
   - rule: respond positively when the user says thank you
     steps:
     - intent: thanks
