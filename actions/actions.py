@@ -229,6 +229,7 @@ class ActionAncestorTree():
                 anc = get_ancestors(i)
                 out_text = "-->".join(anc)
                 out_text = translator.translate(text=out_text, lang_tgt='hi')
+                print(out_text)
                 dispatcher.utter_message(text="वंश - वृक्ष " + out_text)
         else: 
             dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
@@ -245,7 +246,8 @@ class ActionLanguageCousins():
         
         trees= read("data/tree.txt",strip_comments=True)
         entities = list(tracker.get_latest_entity_values("language"))
-
+        data_path = os.path.join("data", "cldf-datasets-wals-014143f", "cldf", "languages.csv")
+        wals_data = pd.read_csv(data_path)
         if len(entities) > 0:
             query_lang = entities.pop()
             query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
@@ -270,6 +272,7 @@ class ActionLanguageCousins():
                 anc = get_immediate_cousins(i)
                 out_text = ','.join(anc)
                 out_text = translator.translate(text=out_text, lang_tgt='hi')
+                print(out_text)
                 dispatcher.utter_message(text="मिलती जुलती भाषा  " + out_text)
         else: 
             dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
