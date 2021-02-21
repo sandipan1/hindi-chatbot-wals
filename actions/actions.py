@@ -9,7 +9,7 @@ import random
 
 from langdetect import detect
 from google_trans_new import google_translator  
-
+from newick import read
 translator = google_translator()  
 
 class ActionLanguageSearch(Action):
@@ -192,3 +192,99 @@ class ActionGenderSearch(Action):
         self.print(out_text)
         dispatcher.utter_message(text=out_text)
         return []
+
+
+class ActionAncestorTree():
+    def name(self) -> Text:
+        return "action_ancester_tree"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        trees= read("data/tree.txt",strip_comments=True)
+        entities = list(tracker.get_latest_entity_values("language"))
+        data_path = os.path.join("data", "cldf-datasets-wals-014143f", "cldf", "languages.csv")
+        wals_data = pd.read_csv(data_path)
+        if len(entities) > 0:
+            query_lang = entities.pop()
+            query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
+            query_lang_en = query_lang_en.strip()
+            query_lang_en = query_lang_en.lower()
+            if len(query_lang_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
+
+                query_lang_en = list(set(f).intersection(set(wals_data["Name"])))[0]
+            print(query_lang_en)
+
+        matched_leaves = [] 
+        for i, node in enumerate(trees):
+            s=node.get_leaves()
+            r= [k for k in s if query_lang_en in k.name]
+            matched_leaves.extend(r)
+            print(r,node,i)
+
+        if len(matched_leaves) > 0:
+            for i in matched_leaves:
+                anc = get_ancestors(i)
+                out_text = "-->".join(anc)
+                out_text = translator.translate(text=out_text, lang_tgt='hi')
+                dispatcher.utter_message(text="वंश - वृक्ष " + out_text)
+        else: 
+            dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
+
+
+
+class ActionLanguageCousins():
+    def name(self) -> Text:
+        return "action_langauge_cousin"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        trees= read("data/tree.txt",strip_comments=True)
+        entities = list(tracker.get_latest_entity_values("language"))
+
+        if len(entities) > 0:
+            query_lang = entities.pop()
+            query_lang_en = translator.translate(text=query_lang, lang_tgt='en')
+            query_lang_en = query_lang_en.strip()
+            query_lang_en = query_lang_en.lower()
+            if len(query_lang_en.split(' ')) > 1:
+                f = [x.capitalize() for x in query_lang_en.split(' ')]
+
+                query_lang_en = list(set(f).intersection(set(wals_data["Name"])))[0]
+            print(query_lang_en)
+
+        matched_leaves = [] 
+        for i, node in enumerate(trees):
+            s=node.get_leaves()
+            r= [k for k in s if query_lang_en in k.name]
+            matched_leaves.extend(r)
+
+            print(r,node,i)
+
+        if len(matched_leaves) > 0:
+            for i in matched_leaves:
+                anc = get_immediate_cousins(i)
+                out_text = ','.join(anc)
+                out_text = translator.translate(text=out_text, lang_tgt='hi')
+                dispatcher.utter_message(text="मिलती जुलती भाषा  " + out_text)
+        else: 
+            dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
+
+
+def get_ancestors(node): 
+    ancestors=[]
+    ancestors.append(node.name)
+    while(node.ancestor): 
+        ancestors.append(node.ancestor.name)
+        node = node.ancestor 
+    return ancestors
+
+
+def get_immediate_cousins(node): 
+    ancestor = node.ancestor 
+    return ancestor.get_leaf_names()
+
