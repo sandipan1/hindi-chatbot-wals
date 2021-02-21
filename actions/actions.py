@@ -118,8 +118,8 @@ class ActionCountrySearchFromLanguage(Action):
             query_language_en = query_language_en.strip()
             query_language_en = query_language_en.lower().capitalize()
             if len(query_language_en.split(' ')) > 1:
-                f = [x.capitalize() for x in query_lang_en.split(' ')]
-                query_lang_en = list(set(f).intersection(set(language["name"])))[0]
+                f = [x.capitalize() for x in query_language_en.split(' ')]
+                query_language_en = list(set(f).intersection(set(language["name"])))[0]
 
             self.print(query_language_en)
             
@@ -164,8 +164,8 @@ class ActionGenderSearch(Action):
             query_language_en = query_language_en.strip()
             query_language_en = query_language_en.lower().capitalize()
             if len(query_language_en.split(' ')) > 1:
-                f = [x.capitalize() for x in query_lang_en.split(' ')]
-                query_lang_en = list(set(f).intersection(set(languages["Name"])))[0]
+                f = [x.capitalize() for x in query_language_en.split(' ')]
+                query_language_en = list(set(f).intersection(set(languages["Name"])))[0]
 
             self.print(query_language_en)
             
@@ -262,14 +262,14 @@ class ActionCousinSearch(Action):
             r= [k for k in s if query_lang_en in k.name]
             matched_leaves.extend(r)
 
-            print(r,node,i)
+            # print(r,node,i)
 
         if len(matched_leaves) > 0:
             for i in matched_leaves:
                 anc = get_immediate_cousins(i)
                 out_text = ','.join(anc)
                 out_text = translator.translate(text=out_text, lang_tgt='hi')
-                print(out_text)
+                # print(out_text)
                 dispatcher.utter_message(text="मिलती जुलती भाषा  " + out_text)
         else: 
             dispatcher.utter_message(text='क्षमा करें, मुझे समझ नहीं आया')
@@ -285,6 +285,6 @@ def get_ancestors(node):
 
 
 def get_immediate_cousins(node): 
-    ancestor = node.ancestor 
-    return ancestor.get_leaf_names()
+    anc = node.ancestor 
+    return anc.get_leaf_names()
 
