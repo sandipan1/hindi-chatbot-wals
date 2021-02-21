@@ -139,6 +139,7 @@ nlu:
     - [अंग्रेजी](language) भाषा कैसे बन गई
     - [स्पेनिश](language) भाषा का मूल क्या है
     - [अरबी](language) किन भाषाओं से उत्पन्न हुई?
+
 - intent: cousin_search
   examples: |
     - मुझे [हिंदी](language) भाषा का वंशावली दिखाओ
